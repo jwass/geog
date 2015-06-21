@@ -81,13 +81,12 @@ def course(p0, p1, deg=True, bearing=False):
 
 def propagate(p0, angle, d, deg=True, bearing=False, r=r_earth_mean):
     single, (p0, angle, d) = _to_arrays((p0, 2), (angle, 1), (d, 1))
-    if not bearing:
-        angle = 90 - angle
-
-    angle = np.radians(angle)
-
     if deg:
         p0 = np.radians(p0)
+        angle = np.radians(angle)
+
+    if not bearing:
+        angle = np.pi / 2.0 - angle
 
     lon0, lat0 = p0[:,0], p0[:,1]
 
