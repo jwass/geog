@@ -26,6 +26,6 @@ setup(
         'numpy',
     ],
     extras_require={
-        'test': ['pytest'],
+        'test': ['pytest', 'tox'],
     },
 )
