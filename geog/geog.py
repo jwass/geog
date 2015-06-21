@@ -30,6 +30,25 @@ def _to_arrays(*args):
 
 
 def distance(p0, p1, deg=True, r=r_earth_mean):
+    """
+    Return the distance between two points on the surface of the Earth.
+
+    Parameters
+    ----------
+    p0 : point-like (or array of point-like) [longitude, latitude] objects
+    p1 : point-like (or array of point-like) [longitude, latitude] objects
+    deg : bool, optional (default True)
+        indicates if p0 and p1 are specified in degrees 
+    r : float, optional (default r_earth_mean)
+        radius of the sphere 
+
+    Returns
+    -------
+    d : float
+
+    Note: Spherical earth model. By default uses radius of 6371 km.
+
+    """
     single, (p0, p1) = _to_arrays((p0, 2), (p1, 2))
     if deg:
         p0 = np.radians(p0)
@@ -52,7 +71,31 @@ def distance(p0, p1, deg=True, r=r_earth_mean):
 
 
 def course(p0, p1, deg=True, bearing=False):
-    # http://www.movable-type.co.uk/scripts/latlong.html
+    """
+    Compute the initial bearing along the great circle from p0 to p1
+
+    NB: The angle returned by course() is not the traditional definition of
+    bearing. It is definted such that 0 degrees to due East increasing
+    counter-clockwise such that 90 degrees is due North. To obtain the bearing
+    (0 degrees is due North increasing clockwise so that 90 degrees is due
+    East), set the bearing flag input to True.
+
+    Parameters
+    ----------
+    p0 : point-like (or array of point-like) [lon, lat] objects
+    p1 : point-like (or array of point-like) [lon, lat] objects
+    deg : bool, optional (default True)
+        indicates if p0 and p1 are specified in degrees. The returned
+        angle is returned in the same units as the input.
+    bearing : bool, optional (default False)
+        If True, use the classical definition of bearing where 0 degrees is
+        due North increasing clockwise so that and 90 degrees is due East.
+
+    Reference
+    ---------
+    http://www.movable-type.co.uk/scripts/latlong.html - Bearing
+
+    """
     single, (p0, p1) = _to_arrays((p0, 2), (p1, 2))
     if deg:
         p0 = np.radians(p0)
@@ -80,6 +123,28 @@ def course(p0, p1, deg=True, bearing=False):
 
 
 def propagate(p0, angle, d, deg=True, bearing=False, r=r_earth_mean):
+    """
+    Given an initial point and angle, move distance d along the surface
+
+    Parameters
+    ----------
+    p0 : point-like (or array of point-like) [lon, lat] objects
+    angle : float (or array of float)
+        bearing. Note that by default, 0 degrees is due East increasing 
+        clockwise so that 90 degrees is due North. See the bearing flag
+        to change the meaning of this angle
+    d : float (or array of float)
+        distance to move. The units of d should be consistent with input r
+    deg : bool, optional (default True)
+        Whether both p0 and angle are specified in degrees. The output
+        points will also match the value of this flag.
+    bearing : bool, optional (default False)
+        Indicates whether to interpret the input angle as the classical
+        definition of bearing.
+    r : float, optional (default r_earth_mean)
+        radius of the sphere
+
+    """
     single, (p0, angle, d) = _to_arrays((p0, 2), (angle, 1), (d, 1))
     if deg:
         p0 = np.radians(p0)
