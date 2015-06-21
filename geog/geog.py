@@ -46,7 +46,11 @@ def distance(p0, p1, deg=True, r=r_earth_mean):
     -------
     d : float
 
-    Note: Spherical earth model. By default uses radius of 6371 km.
+    Reference
+    ---------
+    http://www.movable-type.co.uk/scripts/latlong.html - Distance
+
+    Note: Spherical earth model. By default uses radius of 6371.0 km.
 
     """
     single, (p0, p1) = _to_arrays((p0, 2), (p1, 2))
@@ -143,6 +147,13 @@ def propagate(p0, angle, d, deg=True, bearing=False, r=r_earth_mean):
         definition of bearing.
     r : float, optional (default r_earth_mean)
         radius of the sphere
+
+
+    Reference
+    ---------
+    http://www.movable-type.co.uk/scripts/latlong.html - Destination
+
+    Note: Spherical earth model. By default uses radius of 6371.0 km.
 
     """
     single, (p0, angle, d) = _to_arrays((p0, 2), (angle, 1), (d, 1))
