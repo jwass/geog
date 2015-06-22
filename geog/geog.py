@@ -113,9 +113,9 @@ def course(p0, p1, deg=True, bearing=False):
     b = cos(lat0) * sin(lat1) - sin(lat0) * cos(lat1) * cos(dlon)
 
     if bearing:
-        angle = arctan2(b, a)
-    else:
         angle = arctan2(a, b)
+    else:
+        angle = arctan2(b, a)
 
     if deg:
         angle = np.degrees(angle)
