@@ -1,26 +1,29 @@
 geog
 ====
 
-A pure numpy implementation for geodesic functions. The interfaces intend
-to be vectorized according to numpy broadcasting rules compatible with a
-variety of inputs including lists, numpy arrays, and Shapely geometries.
+A pure numpy implementation for geodesic functions. The interfaces are
+vectorized according to numpy broadcasting rules compatible with a variety of
+inputs including lists, numpy arrays, and
+[Shapely](http://toblerity.org/shapely/) geometries - allowing for 1-to-1,
+N-to-1, or the element-wise N-to-N calculations in a single call.
 
-`geog` uses a spherical Earth model.
+`geog` uses a spherical Earth model (subject to change) with radius 6371 km.
 
 
-Functions
+Operations
 ---------
 `distance` - Compute the distance between any number of points
 `course` - Compute the forward azimuth between points (see below for
 coordinate system definition)
-`propagate` - Starting from a point and azimuth, move some distance and
-compute the final point.
+`propagate` - Starting from points and pointing azimuths, move some
+distance and compute the final points.
 
 
 Getting Started
 ---------------
 
-Compute the distance in meters between two locations
+Compute the distance in meters between two locations on the surface of the
+Earth.
 ```
 >>> import geog
 
@@ -82,14 +85,52 @@ array([ 2185738.94680724,  2687705.07260978,  1554066.84579387])
 ```
 
 
+Other Operations
+----------------
+Use `propagate` to buffer a single point by passing in multiple angles.
+
+```
+>>> n_points = 6
+>>> d = 100  # meters
+>>> angles = np.linspace(0, 360, n_points)
+>>> polygon = geog.propagate(p, angles, d)
+
+```
+
+Compute the length of a line over the surface.
+```
+>>> np.sum(geog.distance(line[:-1,:], line[1:,:]))
+```
+
+
+Quick Documentation
+-------------
+`distance(p0, p1, deg=True)`
+`course(p0, p1, deg=True, bearing=False)`
+`propagate(p0, angle, d, deg=True, bearing=False)`
+
+For all of the above, `p0` or `p1` can be:
+- single list, tuple, or Shapely Point of [lon, lat] coordinates
+- list of [lon, lat] coordinates or Shapely Points
+- N x 2 numpy array of (lon, lat) coordinates
+
+If argument `deg` is False, then all angle arguments, coordinates and
+azimuths, will be used as radians. If `deg` is False in `course()`, then it's
+output will also be radians.
+
+Consult the documentation on each function for more detailed descriptions of
+the arguments.
+
+
 Conventions
 -----------
 * All points, or point-like objects assume a longitude, latitude ordering.
+* Arrays of points have shape `N x 2`.
 * Azimuth/course is measured with 0 degrees as due East, increasing
   counter-clockwise so that 90 degrees is due North. The functions that
 operate on azimuth accept a `bearing=True` argument to use the more
-traditional definition where 0 degrees is due North increasing clockwise so
-that 90 degrees is due East.
+traditional definition where 0 degrees is due North increasing clockwise such
+that that 90 degrees is due East.
 
 
 Installation
@@ -103,6 +144,7 @@ pip install geog
 
 See also
 --------
-- [TurfJS](https://www.turfjs.org)
+- `geog` is partly inspired by [TurfJS](https://www.turfjs.org)
+
 - [Shapely](https://github.com/toblerity/shapely)
 - [Proj.4](https://trac.osgeo.org/proj/)
