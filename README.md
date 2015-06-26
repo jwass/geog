@@ -84,7 +84,7 @@ array([ 2185738.94680724,  2687705.07260978,  1554066.84579387])
 ```
 
 
-Other Operations
+Other Uses
 ----------------
 Use `propagate` to buffer a single point by passing in multiple angles.
 
