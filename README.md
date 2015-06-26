@@ -7,15 +7,14 @@ inputs including lists, numpy arrays, and
 [Shapely](http://toblerity.org/shapely/) geometries - allowing for 1-to-1,
 N-to-1, or the element-wise N-to-N calculations in a single call.
 
-`geog` uses a spherical Earth model (subject to change) with radius 6371 km.
+`geog` uses a spherical Earth model (subject to change) with radius 6371.0 km.
 
 
 Operations
 ---------
-`distance` - Compute the distance between any number of points
-`course` - Compute the forward azimuth between points (see below for
-coordinate system definition)
-`propagate` - Starting from points and pointing azimuths, move some
+* `distance` - Compute the distance between any number of points
+* `course` - Compute the forward azimuth between points
+* `propagate` - Starting from points and pointing azimuths, move some
 distance and compute the final points.
 
 
@@ -144,7 +143,7 @@ pip install geog
 
 See also
 --------
-- `geog` is partly inspired by [TurfJS](https://www.turfjs.org)
+* `geog` is partly inspired by [TurfJS](https://www.turfjs.org)
 
-- [Shapely](https://github.com/toblerity/shapely)
-- [Proj.4](https://trac.osgeo.org/proj/)
+* [Shapely](https://github.com/toblerity/shapely)
+* [Proj.4](https://trac.osgeo.org/proj/)
