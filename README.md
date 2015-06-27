@@ -103,7 +103,9 @@ Compute the length of a line over the surface.
 Quick Documentation
 -------------
 `distance(p0, p1, deg=True)`
+
 `course(p0, p1, deg=True, bearing=False)`
+
 `propagate(p0, angle, d, deg=True, bearing=False)`
 
 For all of the above, `p0` or `p1` can be:
