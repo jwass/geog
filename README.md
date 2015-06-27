@@ -54,9 +54,7 @@ Compute the element-wise distance of several points to several points
 ```
 >>> sydney = [151.2094, -33.865]
 >>> barcelona = [2.1833, 41.3833]
->>> p_from = [boston, la, dc]
->>> p_to = [paris, sydney, barcelona]
->>> geog.distance(p_from, p_to)
+>>> geog.distance[boston, la, dc], [paris, sydney, barcelona])
 array([  5531131.56144631,  12072666.9425518 ,   6489222.58111716])
 
 ```
