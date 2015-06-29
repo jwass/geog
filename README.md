@@ -9,6 +9,8 @@ N-to-1, or the element-wise N-to-N calculations in a single call.
 
 `geog` uses a spherical Earth model (subject to change) with radius 6371.0 km.
 
+`geog` draws inspiration from [TurfJS](https://www.turfjs.org)
+
 
 Operations
 ---------
