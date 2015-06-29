@@ -145,5 +145,6 @@ See also
 --------
 * `geog` is partly inspired by [TurfJS](https://www.turfjs.org)
 
+* [PostGIS](http://postgis.net/docs/manual-1.5/ch04.html#Geography_Basics) geography type
 * [Shapely](https://github.com/toblerity/shapely)
 * [Proj.4](https://trac.osgeo.org/proj/)
