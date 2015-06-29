@@ -12,9 +12,9 @@ N-to-1, or the element-wise N-to-N calculations in a single call.
 
 Operations
 ---------
-* `distance` - Compute the distance between any number of points
+* `distance` - Compute the distance in meters over the surface of the Earth between any number of longitude, latitude points
 * `course` - Compute the forward azimuth between points
-* `propagate` - Starting from points and pointing azimuths, move some
+* `propagate` - Starting from some points and pointing azimuths, move some
 distance and compute the final points.
 
 
