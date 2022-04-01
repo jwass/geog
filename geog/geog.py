@@ -15,6 +15,8 @@ def _to_arrays(*args):
     single = True
     for a, ndim in args:
         try:
+            arg = np.array(a.coords, copy=False)
+        except AttributeError:
             arg = np.array(a, copy=False)
         except TypeError:
             # Typically end up in here when list of Shapely geometries is
